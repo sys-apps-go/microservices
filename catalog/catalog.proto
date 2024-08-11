@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package catalog;
+option go_package = "github.com/goperfapps/microservices/catalog";
+
+// Product represents a product in the catalog.
+message Product {
+    int32 id = 1;
+    string name = 2;
+    float price = 3;
+}
+
+// Request message to get product by ID.
+message GetProductByIdRequest {
+    int32 id = 1;
+}
+
+// Response message for getting product by ID.
+message GetProductByIdResponse {
+    Product product = 1;
+}
+
+// Request message to list products.
+message ListProductsRequest {
+    // Add any fields if needed
+}
+
+// Response message for listing products.
+message ListProductsResponse {
+    repeated Product products = 1;
+}
+
+// CatalogService defines the catalog service.
+service CatalogService {
+    // GetProductById returns a product by its ID.
+    rpc GetProductById(GetProductByIdRequest) returns (Product);
+
+    // ListProducts lists all products.
+    rpc ListProducts(ListProductsRequest) returns (ListProductsResponse);
+}
+
